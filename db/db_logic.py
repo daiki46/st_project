@@ -21,8 +21,8 @@ def exec(query):
 
 def delete_table():
     exec("""DELETE FROM dbo.BUNMORI;
-         DBCC CHECKIDENT ('dbo.BUNMORI', RESEED, 0);
-         """)
+        DBCC CHECKIDENT ('dbo.BUNMORI', RESEED, 0);
+        """)
 
 def get_pd_yoyakujoukyou():
     query = text("SELECT * FROM BUNMORI")  # 必要に応じて WHERE 句で日付フィルター可
@@ -43,4 +43,14 @@ def get_update_time():
         return result[0]
     finally:
         if not session is None:
+            session.close()
+
+def get_question(q_id: int):
+    query = text("SELECT question, answer FROM t_questions WHERE id = :q_id")
+    try:
+        session = db.get_session()
+        result = session.execute(query, {"q_id": q_id}).fetchone()
+        return result if result else None
+    finally:
+        if session is not None:
             session.close()
