@@ -1,7 +1,7 @@
 import random
 import streamlit as st
 
-azure_path = "/home/img/"
+azure_path = "/img/"
 
 st.title("おみくじアプリ")
 st.write("ボタンを押しておみくじを引いてね")
@@ -11,8 +11,8 @@ if st.button("おみくじを引く"):
 
     # 生成した乱数が90以上の場合は大吉
     if random_int >= 90:
-       st.write("大吉")
-       st.image(f"{azure_path}daikichi.png")
+        st.write("大吉")
+        st.image(f"{azure_path}daikichi.png")
 
     # 生成した乱数が30以上の場合は中吉
     elif random_int >= 30:
