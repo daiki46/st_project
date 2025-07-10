@@ -1,11 +1,8 @@
-import os
-from dotenv import load_dotenv
-
-# .envの読み込み
-load_dotenv()
+import streamlit as st
 
 class Settings:
-    DB_URL = os.environ["DB_URL"]
-    DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+    DB_URL = st.secrets["settings"]["DB_URL"]
+    DEBUG = False
 
 settings = Settings()
+
