@@ -2,7 +2,7 @@ import random
 import streamlit as st
 import mysql.connector
 
-azure_path = "/home/img/"
+image_path = "img/"
 
 def get_question(aaa):
     conn = mysql.connector.connect(
@@ -40,17 +40,17 @@ if st.button("スタート"):
     # # 生成した乱数が90以上の場合は大吉
     # if random_int >= 90:
     #    st.write("大吉")
-    #    st.image(f"{azure_path}daikichi.png")
+    #    st.image(f"{image_path}daikichi.png")
 
     # # 生成した乱数が30以上の場合は中吉
     # elif random_int >= 30:
     #     st.write("中吉")
-    #     st.image(f"{azure_path}chukichi.png")
+    #     st.image(f"{image_path}chukichi.png")
 
     # # それ以外の場合は凶
     # else:
     #     st.write("凶")
-    #     st.image(f"{azure_path}kyou.png")   
+    #     st.image(f"{image_path}kyou.png")   
 
 
 
