@@ -37,8 +37,7 @@ def get_pd_aki_yoyakujoukyou():
 def get_update_time():
     query = """SELECT UPDATETIME FROM BUNMORI
 ORDER BY UPDATETIME DESC
-LIMIT 1;
-"""
+LIMIT 1;"""
     try:
         session = db.get_session()
         # クエリ実行
