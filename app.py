@@ -63,10 +63,5 @@ if display_mode == "すべて表示":
 elif display_mode == "空きのみ表示":
     st.dataframe(aki_pivot, use_container_width=True)
 
-# タプルからdatetimeオブジェクトを抽出
-str_dt = update_time[0]  # タプルの最初の要素を取得
-
-# フォーマット変換
-str_dt = str_dt.strftime("%Y-%m-%d %H:%M:%S")
-
-st.write(f"最終更新日時：{str_dt}")
+# 最終更新日時
+st.write(f"最終更新日時：{update_time[0]}")

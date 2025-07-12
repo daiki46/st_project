@@ -20,9 +20,9 @@ def exec(query):
             session.close()
 
 def delete_table():
-    exec("""DELETE FROM dbo.BUNMORI;
-        DBCC CHECKIDENT ('dbo.BUNMORI', RESEED, 0);
-        """)
+    exec("DELETE FROM BUNMORI;")
+    exec("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'BUNMORI';")
+        
 
 def get_pd_yoyakujoukyou():
     query = text("SELECT * FROM BUNMORI")  # 必要に応じて WHERE 句で日付フィルター可
@@ -35,7 +35,10 @@ def get_pd_aki_yoyakujoukyou():
     return df
 
 def get_update_time():
-    query = "SELECT TOP 1 UPDATETIME FROM BUNMORI" 
+    query = """SELECT UPDATETIME FROM BUNMORI
+ORDER BY UPDATETIME DESC
+LIMIT 1;
+"""
     try:
         session = db.get_session()
         # クエリ実行
@@ -54,3 +57,9 @@ def get_question(q_id: int):
     finally:
         if session is not None:
             session.close()
+
+def exec_query_list(query_list):
+    for q in query_list:
+        print(f'実行されるクエリ：{q}')
+        exec(q)
+        
